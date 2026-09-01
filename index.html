@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#9b5b67">
+  <title>Tabungan Menikah — Fatih ❤️ Muzdoug</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status"></div>
+
+  <section id="loginPage" class="screen login-screen">
+    <div class="login-shell">
+      <div class="login-decoration">♥</div>
+      <p class="eyebrow">OUR LITTLE JOURNEY</p>
+      <h1>Tabungan<br><span>Menuju Pernikahan</span></h1>
+      <p class="login-subtitle">Satu langkah kecil setiap hari,<br>menuju hari besar kita. ❤️</p>
+
+      <form id="loginForm" class="form">
+        <label>Email
+          <input id="email" type="email" autocomplete="email" placeholder="Email" required>
+        </label>
+        <label>Password
+          <input id="password" type="password" autocomplete="current-password" placeholder="Password" required>
+        </label>
+        <button class="btn btn-primary" type="submit">Masuk ke Tabungan</button>
+        <p id="loginError" class="form-error"></p>
+      </form>
+    </div>
+  </section>
+
+  <div id="appPage" class="app hidden">
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-mark">♥</div>
+        <div>
+          <strong>Fatih <span>♥</span> Muzdoug</strong>
+          <small>WEDDING SAVINGS</small>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="settingsButton" class="icon-btn" title="Pengaturan target" aria-label="Pengaturan target">⚙</button>
+        <button id="themeToggle" class="icon-btn" title="Ganti tema" aria-label="Ganti tema">☾</button>
+        <span id="currentUserName" class="current-user">Fatih</span>
+        <button id="logoutButton" class="btn btn-ghost">Keluar</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">OUR WEDDING FUND</p>
+          <h1>Sedikit demi sedikit,<br><span>menuju hari bahagia.</span></h1>
+          <p class="hero-copy">Catat tabungan kalian setiap hari dan lihat perjalanan menuju target bersama.</p>
+        </div>
+        <div class="target-box">
+          <span>💍 TARGET PERNIKAHAN</span>
+          <strong id="weddingDateLabel">Secepatnya, InsyaAllah ❤️</strong>
+          <small id="countdownLabel">Tanggal belum ditentukan</small>
+        </div>
+      </section>
+
+      <section class="summary-grid">
+        <article class="card main-summary">
+          <div class="card-label">TOTAL TABUNGAN BERSAMA</div>
+          <div id="totalSavings" class="big-number">Rp0</div>
+          <div class="progress-info"><span>Progress target</span><strong id="progressText">0%</strong></div>
+          <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+          <div class="target-row">Target <strong id="targetAmount">Rp50.000.000</strong></div>
+        </article>
+
+        <article class="card person-card">
+          <div class="avatar">F</div>
+          <div><span>Tabungan Fatih</span><strong id="fatihTotal">Rp0</strong></div>
+        </article>
+
+        <article class="card person-card">
+          <div class="avatar">M</div>
+          <div><span>Tabungan Muzdoug</span><strong id="muzdougTotal">Rp0</strong></div>
+        </article>
+      </section>
+
+      <section class="quick-grid">
+        <article class="card quick-card">
+          <span>Transaksi</span><strong id="transactionCount">0</strong><small>Total catatan</small>
+        </article>
+        <article class="card quick-card">
+          <span>Rata-rata</span><strong id="averageSavings">Rp0</strong><small>Per transaksi</small>
+        </article>
+        <article class="card quick-card">
+          <span>Terbesar</span><strong id="largestSavings">Rp0</strong><small>Transaksi terbesar</small>
+        </article>
+        <article class="card quick-card">
+          <span>Bulan ini</span><strong id="monthSavings">Rp0</strong><small>Tabungan bulan berjalan</small>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="card">
+          <div class="section-head">
+            <div><p class="eyebrow">DAILY SAVINGS</p><h2>Tambah Tabungan</h2></div>
+            <div class="section-icon">＋</div>
+          </div>
+          <form id="savingForm" class="form">
+            <label>Nama
+              <select id="person" required>
+                <option value="Fatih">Fatih</option>
+                <option value="Muzdoug">Muzdoug</option>
+              </select>
+            </label>
+            <label>Nominal
+              <div class="money-input"><span>Rp</span><input id="amount" type="number" min="1" step="1" placeholder="50000" required></div>
+            </label>
+            <label>Tanggal
+              <input id="date" type="date" required>
+            </label>
+            <label>Catatan
+              <textarea id="note" rows="3" maxlength="200" placeholder="Contoh: Tabungan harian ❤️"></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Simpan Tabungan ❤️</button>
+          </form>
+        </article>
+
+        <article class="card chart-card">
+          <div class="section-head">
+            <div><p class="eyebrow">PROGRESS</p><h2>Perkembangan</h2></div>
+            <select id="chartRange" class="small-select" title="Rentang grafik">
+              <option value="6">6 bulan</option>
+              <option value="12" selected>12 bulan</option>
+            </select>
+          </div>
+          <div class="chart-wrap"><canvas id="savingsChart"></canvas></div>
+        </article>
+      </section>
+
+      <section class="card history-card">
+        <div class="section-head history-head">
+          <div><p class="eyebrow">SAVINGS HISTORY</p><h2>Riwayat Tabungan</h2></div>
+          <div class="history-tools">
+            <select id="monthFilter" class="small-select">
+              <option value="all">Semua bulan</option>
+            </select>
+            <span id="transactionBadge" class="badge">0 transaksi</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tanggal</th><th>Nama</th><th>Nominal</th><th>Catatan</th><th>Aksi</th></tr></thead>
+            <tbody id="transactionTable"></tbody>
+          </table>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div>♡</div><h3>Belum ada tabungan</h3><p>Yuk mulai perjalanan kalian hari ini.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>Dibuat dengan ❤️ untuk <strong>Fatih & Muzdoug</strong></footer>
+  </div>
+
+  <dialog id="editDialog" class="modal">
+    <form id="editForm" method="dialog" class="modal-card">
+      <button id="closeEdit" type="button" class="modal-close">×</button>
+      <p class="eyebrow">EDIT TABUNGAN</p>
+      <h2>Perbarui transaksi</h2>
+      <input id="editId" type="hidden">
+      <label>Nama<select id="editPerson"><option>Fatih</option><option>Muzdoug</option></select></label>
+      <label>Nominal<div class="money-input"><span>Rp</span><input id="editAmount" type="number" min="1" step="1" required></div></label>
+      <label>Tanggal<input id="editDate" type="date" required></label>
+      <label>Catatan<textarea id="editNote" rows="3" maxlength="200"></textarea></label>
+      <div class="modal-actions"><button id="cancelEdit" type="button" class="btn btn-ghost">Batal</button><button class="btn btn-primary" type="submit">Simpan Perubahan</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="modal">
+    <form id="settingsForm" method="dialog" class="modal-card">
+      <button id="closeSettings" type="button" class="modal-close">×</button>
+      <p class="eyebrow">WEDDING SETTINGS</p>
+      <h2>Pengaturan Target</h2>
+      <label>Target tabungan<div class="money-input"><span>Rp</span><input id="settingsTarget" type="number" min="1" step="1" required></div></label>
+      <label>Tanggal pernikahan <small>(opsional)</small><input id="settingsWeddingDate" type="date"></label>
+      <p class="hint">Jika tanggal belum pasti, biarkan kosong. Dashboard akan tetap menampilkan “Secepatnya, InsyaAllah ❤️”.</p>
+      <div class="modal-actions"><button id="cancelSettings" type="button" class="btn btn-ghost">Batal</button><button class="btn btn-primary" type="submit">Simpan Pengaturan</button></div>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
