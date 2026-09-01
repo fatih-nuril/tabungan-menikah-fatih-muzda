@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <div id="toast" class="toast" role="status"></div>
@@ -55,7 +56,7 @@
         <div>
           <p class="eyebrow">OUR WEDDING FUND</p>
           <h1>Sedikit demi sedikit,<br><span>menuju hari bahagia.</span></h1>
-          <p class="hero-copy">Jangan lupa nabung hari ini ya, sayang 🥰</p>
+          <p class="hero-copy">Catat tabungan kita setiap hari dan lihat perjalanan menuju target bersama.</p>
         </div>
         <div class="target-box">
           <span>💍 TARGET PERNIKAHAN</span>
@@ -97,6 +98,73 @@
         <article class="card quick-card">
           <span>Bulan ini</span><strong id="monthSavings">Rp0</strong><small>Tabungan bulan berjalan</small>
         </article>
+      </section>
+
+      <section class="challenge-section">
+        <div class="challenge-section-heading">
+          <div>
+            <p class="eyebrow">SAVINGS CHALLENGE</p>
+            <h2>Udah nabung hari ini belum, sayang? 🥹❤️</h2>
+            <p class="challenge-copy">Masing-masing punya tabel sendiri. klik nominalnya ya sayang atau upload manual</p>
+          </div>
+          <div class="challenge-total-box combined">
+            <span>Total challenge berdua</span>
+            <strong id="challengeCombinedTotal">Rp0</strong>
+            <small>dari Rp20.000.000</small>
+          </div>
+        </div>
+
+        <div class="challenge-person-grid">
+          <article class="card challenge-card personal-challenge" data-challenge-person="Fatih">
+            <div class="personal-challenge-head">
+              <div class="personal-title">
+                <div class="avatar challenge-avatar">F</div>
+                <div>
+                  <p class="eyebrow">PUNYA</p>
+                  <h3>Tabungan Fatih ❤️</h3>
+                  <span class="challenge-round" id="fatihChallengeRound">Challenge #1</span>
+                </div>
+              </div>
+              <div class="challenge-total-box">
+                <span>Sudah terkumpul</span>
+                <strong id="fatihChallengeTotal">Rp0</strong>
+                <small>dari Rp10.000.000</small>
+              </div>
+            </div>
+            <div class="challenge-progress-row">
+              <div><strong id="fatihChallengeCompleted">0</strong> / <span>180</span> kotak</div>
+              <strong id="fatihChallengeProgress">0%</strong>
+            </div>
+            <div class="progress-track challenge-progress-track"><div id="fatihChallengeProgressBar" class="progress-fill"></div></div>
+            <div id="fatihChallengeGrid" class="challenge-grid" aria-label="Savings Challenge Fatih"></div>
+            <p class="challenge-hint" id="fatihChallengeHint">💡 Kotak Fatih hanya bisa dicoret oleh Fatih.</p>
+          </article>
+
+          <article class="card challenge-card personal-challenge" data-challenge-person="Muzdoug">
+            <div class="personal-challenge-head">
+              <div class="personal-title">
+                <div class="avatar challenge-avatar">M</div>
+                <div>
+                  <p class="eyebrow">PUNYA</p>
+                  <h3>Tabungan Muzdoug ❤️</h3>
+                  <span class="challenge-round" id="muzdougChallengeRound">Challenge #1</span>
+                </div>
+              </div>
+              <div class="challenge-total-box">
+                <span>Sudah terkumpul</span>
+                <strong id="muzdougChallengeTotal">Rp0</strong>
+                <small>dari Rp10.000.000</small>
+              </div>
+            </div>
+            <div class="challenge-progress-row">
+              <div><strong id="muzdougChallengeCompleted">0</strong> / <span>180</span> kotak</div>
+              <strong id="muzdougChallengeProgress">0%</strong>
+            </div>
+            <div class="progress-track challenge-progress-track"><div id="muzdougChallengeProgressBar" class="progress-fill"></div></div>
+            <div id="muzdougChallengeGrid" class="challenge-grid" aria-label="Savings Challenge Muzdoug"></div>
+            <p class="challenge-hint" id="muzdougChallengeHint">💡 Kotak Muzdoug hanya bisa dicoret oleh Muzdoug.</p>
+          </article>
+        </div>
       </section>
 
       <section class="content-grid">
@@ -171,7 +239,7 @@
       <h2>Perbarui transaksi</h2>
       <input id="editId" type="hidden">
       <label>Nama<select id="editPerson"><option>Fatih</option><option>Muzdoug</option></select></label>
-      <label>Nominal<div class="money-input"><span>Rp</span><input id="editAmount" type="number" min="1" step="1" required></div></label>
+      <label>Nominal<div class="money-input"><span>Rp</span><input id="editAmount" type="number" min="1" step="1" required></div><small id="editChallengeHint" class="hint"></small></label>
       <label>Tanggal<input id="editDate" type="date" required></label>
       <label>Catatan<textarea id="editNote" rows="3" maxlength="200"></textarea></label>
       <div class="modal-actions"><button id="cancelEdit" type="button" class="btn btn-ghost">Batal</button><button class="btn btn-primary" type="submit">Simpan Perubahan</button></div>
@@ -187,6 +255,28 @@
       <label>Tanggal pernikahan <small>(opsional)</small><input id="settingsWeddingDate" type="date"></label>
       <p class="hint">Jika tanggal belum pasti, biarkan kosong. Dashboard akan tetap menampilkan “Secepatnya, InsyaAllah ❤️”.</p>
       <div class="modal-actions"><button id="cancelSettings" type="button" class="btn btn-ghost">Batal</button><button class="btn btn-primary" type="submit">Simpan Pengaturan</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="challengeDialog" class="modal">
+    <form id="challengeForm" method="dialog" class="modal-card challenge-modal-card">
+      <button id="closeChallenge" type="button" class="modal-close">×</button>
+      <p class="eyebrow">SAVINGS CHALLENGE</p>
+      <h2 id="challengeDialogTitle">Coret nominal</h2>
+      <div class="challenge-selected"><span>Nominal</span><strong id="challengeNominal">Rp50.000</strong></div>
+      <input id="challengeId" type="hidden">
+      <input id="challengeOwner" type="hidden">
+      <label>Yang menabung
+        <select id="challengePerson"><option value="Fatih">Fatih</option><option value="Muzdoug">Muzdoug</option></select>
+      </label>
+      <label>Tanggal<input id="challengeDate" type="date" required></label>
+      <label>Catatan<textarea id="challengeNote" rows="3" maxlength="200" placeholder="Contoh: Nabung hari ini ❤️"></textarea></label>
+      <p id="challengeClaimInfo" class="hint"></p>
+      <div class="modal-actions">
+        <button id="cancelChallenge" type="button" class="btn btn-ghost">Batal</button>
+        <button id="unclaimChallenge" type="button" class="btn btn-danger hidden">Batalkan Coretan</button>
+        <button id="saveChallenge" class="btn btn-primary" type="submit">Coret & Simpan ❤️</button>
+      </div>
     </form>
   </dialog>
 
